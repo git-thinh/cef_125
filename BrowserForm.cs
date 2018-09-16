@@ -6,6 +6,7 @@ using System;
 using System.Windows.Forms;
 using CefSharp.WinForms;
 using CefSharp;
+using System.Diagnostics;
 
 namespace cef_125
 {
@@ -17,15 +18,19 @@ namespace cef_125
         {
             InitializeComponent();
 
-            Text = "CefSharp";
-            WindowState = FormWindowState.Maximized;
+            Text = "TEST";
+            //WindowState = FormWindowState.Maximized;
 
-            browser = new WebView("www.google.com.vn", new BrowserSettings())
+            browser = new WebView("http://localhost:60000/index.html", new BrowserSettings())
             {
                 Dock = DockStyle.Fill,
             };
             toolStripContainer.ContentPanel.Controls.Add(browser);
 
+            browser.LoadCompleted += (se, ev) =>
+            {
+                browser.ShowDevTools();
+            };
             //browser.LoadingStateChanged += OnLoadingStateChanged;
             browser.ConsoleMessage += OnBrowserConsoleMessage;
             //browser.StatusMessage += OnBrowserStatusMessage;
@@ -35,11 +40,20 @@ namespace cef_125
             //var bitness = Environment.Is64BitProcess ? "x64" : "x86";
             //var version = String.Format("Chromium: {0}, CEF: {1}, CefSharp: {2}, Environment: {3}", Cef.ChromiumVersion, Cef.CefVersion, Cef.CefSharpVersion, bitness);
             //DisplayOutput(version);
+
+            outputLabel.Visible = false;
+            toolStrip1.Visible = false;
+            menuStrip1.Visible = false;
+            this.Shown += (s, e) => {
+                //browser.ShowDevTools();
+            };            
         }
 
         private void OnBrowserConsoleMessage(object sender, ConsoleMessageEventArgs args)
         {
-            DisplayOutput(string.Format("Line: {0}, Source: {1}, Message: {2}", args.Line, args.Source, args.Message));
+            //DisplayOutput(string.Format("Line: {0}, Source: {1}, Message: {2}", args.Line, args.Source, args.Message));
+            //string s = string.Format("Line: {0}, Source: {1}, Message: {2}", args.Line, args.Source, args.Message);
+            //Debug.WriteLine(s);
         }
 
         //private void OnBrowserStatusMessage(object sender, StatusMessageEventArgs args)
@@ -152,6 +166,19 @@ namespace cef_125
 
         private void ShowDevToolsMenuItemClick(object sender, EventArgs e)
         {
+            browser.ShowDevTools();
+        }
+
+        private void btnFullScreen_Click(object sender, EventArgs e)
+        {
+            toolStrip1.Visible = false;
+            menuStrip1.Visible = false;
+        }
+
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            browser.CloseDevTools();
+            LoadUrl(urlTextBox.Text);
             browser.ShowDevTools();
         }
     }

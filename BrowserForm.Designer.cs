@@ -37,10 +37,12 @@
             this.forwardButton = new System.Windows.Forms.ToolStripButton();
             this.urlTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.goButton = new System.Windows.Forms.ToolStripButton();
+            this.btnReload = new System.Windows.Forms.ToolStripButton();
+            this.btnFullScreen = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.showDevToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showDevToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripContainer.ContentPanel.SuspendLayout();
             this.toolStripContainer.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer.SuspendLayout();
@@ -95,7 +97,9 @@
             this.backButton,
             this.forwardButton,
             this.urlTextBox,
-            this.goButton});
+            this.goButton,
+            this.btnReload,
+            this.btnFullScreen});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
@@ -107,20 +111,18 @@
             // backButton
             // 
             this.backButton.Enabled = false;
-            //this.backButton.Image = global::CefSharp.MinimalExample.WinForms.Properties.Resources.nav_left_green;
             this.backButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(52, 22);
+            this.backButton.Size = new System.Drawing.Size(33, 22);
             this.backButton.Text = "Back";
             this.backButton.Click += new System.EventHandler(this.BackButtonClick);
             // 
             // forwardButton
             // 
             this.forwardButton.Enabled = false;
-            //this.forwardButton.Image = global::CefSharp.MinimalExample.WinForms.Properties.Resources.nav_right_green;
             this.forwardButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.forwardButton.Name = "forwardButton";
-            this.forwardButton.Size = new System.Drawing.Size(70, 22);
+            this.forwardButton.Size = new System.Drawing.Size(51, 22);
             this.forwardButton.Text = "Forward";
             this.forwardButton.Click += new System.EventHandler(this.ForwardButtonClick);
             // 
@@ -128,17 +130,39 @@
             // 
             this.urlTextBox.AutoSize = false;
             this.urlTextBox.Name = "urlTextBox";
-            this.urlTextBox.Size = new System.Drawing.Size(500, 25);
+            this.urlTextBox.Size = new System.Drawing.Size(300, 25);
             this.urlTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UrlTextBoxKeyUp);
             // 
             // goButton
             // 
-            //this.goButton.Image = global::CefSharp.MinimalExample.WinForms.Properties.Resources.nav_plain_green;
             this.goButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.goButton.Name = "goButton";
-            this.goButton.Size = new System.Drawing.Size(42, 22);
+            this.goButton.Size = new System.Drawing.Size(24, 22);
             this.goButton.Text = "Go";
             this.goButton.Click += new System.EventHandler(this.GoButtonClick);
+            // 
+            // btnReload
+            // 
+            this.btnReload.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnReload.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnReload.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.Image")));
+            this.btnReload.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(44, 22);
+            this.btnReload.Text = "Reload";
+            this.btnReload.ToolTipText = "Reload";
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
+            // 
+            // btnFullScreen
+            // 
+            this.btnFullScreen.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnFullScreen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnFullScreen.Image = ((System.Drawing.Image)(resources.GetObject("btnFullScreen.Image")));
+            this.btnFullScreen.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnFullScreen.Name = "btnFullScreen";
+            this.btnFullScreen.Size = new System.Drawing.Size(60, 22);
+            this.btnFullScreen.Text = "FullScreen";
+            this.btnFullScreen.Click += new System.EventHandler(this.btnFullScreen_Click);
             // 
             // menuStrip1
             // 
@@ -156,20 +180,20 @@
             this.showDevToolsToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
             this.fileToolStripMenuItem.Text = "File";
-			// 
-			// showDevToolsToolStripMenuItem
-			// 
-			this.showDevToolsToolStripMenuItem.Name = "showDevToolsToolStripMenuItem";
-			this.showDevToolsToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-			this.showDevToolsToolStripMenuItem.Text = "Show DevTools";
-			this.showDevToolsToolStripMenuItem.Click += new System.EventHandler(this.ShowDevToolsMenuItemClick);
-			// 
+            // 
+            // showDevToolsToolStripMenuItem
+            // 
+            this.showDevToolsToolStripMenuItem.Name = "showDevToolsToolStripMenuItem";
+            this.showDevToolsToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.showDevToolsToolStripMenuItem.Text = "Show DevTools";
+            this.showDevToolsToolStripMenuItem.Click += new System.EventHandler(this.ShowDevToolsMenuItemClick);
+            // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitMenuItemClick);
             // 
@@ -180,7 +204,6 @@
             this.ClientSize = new System.Drawing.Size(730, 490);
             this.Controls.Add(this.toolStripContainer);
             this.Controls.Add(this.menuStrip1);
-            //this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "BrowserForm";
             this.Text = "BrowserForm";
@@ -213,6 +236,7 @@
         private System.Windows.Forms.Label outputLabel;
         private System.Windows.Forms.Label statusLabel;
 		private System.Windows.Forms.ToolStripMenuItem showDevToolsToolStripMenuItem;
-
+        private System.Windows.Forms.ToolStripButton btnReload;
+        private System.Windows.Forms.ToolStripButton btnFullScreen;
     }
 }
